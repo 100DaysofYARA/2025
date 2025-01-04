@@ -1,0 +1,24 @@
+import "pe"
+
+rule lumma
+{
+	meta:
+		author = "Denice"
+		description = "Detecting Lumma Stealer, sample from VX"
+		hash = "C5F9B73BC19113661646077ADADE8074F01ED27C67816514A26FBE9EDBC30743"
+
+	strings:
+		$exe = "WinRTNetMUAHostServer.exe" wide
+		$import1 = "IsDebuggerPresent"
+		$import2 = "EnterCriticalSection"
+		$import3 = "LeaveCriticalSection"
+		$import4 = "InitializeCriticalSectionEx"
+		$import5 = "FlushFileBuffers"
+		$s1 = "CONOUT$" wide
+		$s2 = "LC_COLLATE" wide nocase
+
+	condition:
+		uint16(0) == 0x5A4D and filesize < 5MB and
+		pe.number_of_signatures == 0 and
+		$exe and 3 of ($import*) and $s1 and $s2 
+}
