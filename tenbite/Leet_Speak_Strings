@@ -1,0 +1,40 @@
+rule Leet_Speak_Swear
+{
+    meta:
+		author      = "Tenbite @https://x.com/BitOfTen"
+        description = "Detects files containing classic hacker/leet terms"
+        date = "2025-01-30"
+    strings:
+        $sus_1  = "fuckThis" nocase
+        $sus_2  = "sh!tStorm" nocase
+        $sus_3  = "wtfVariable" nocase
+        $sus_4  = "noFcksGiven" nocase
+        $sus_5  = "pwned" nocase
+        $sus_6  = "h4x0r" nocase
+        $sus_7  = "1337Sh3ll" nocase
+        $sus_8  = "r00tMe" nocase
+        $sus_9  = "catchMeIfYouCan" nocase
+        $sus_10 = "lolAntivirus" nocase
+        $sus_11 = "noOneWillFindThis" nocase
+        $sus_12 = "totallySafeVariable" nocase
+        $sus_14 = "yoloFunction" nocase
+		//reference : https://www.linkedin.com/pulse/hacker-slang-you-should-know-joseph-s-erle-mba-cic-crm-tra-fpp5c
+        $leet_1  = "j00" nocase       // "you"
+        $leet_2  = "k3w1" nocase      // "cool"
+        $leet_3  = "l33t" nocase      // "elite"
+        $leet_4  = "n00b" nocase      // "newbie"
+        $leet_5  = "pr0n" nocase      // "porn"
+        $leet_6  = "pwn" nocase       // to "own" or dominate
+        $leet_7  = "r00t" nocase      // root access
+        $leet_8  = "w00t" nocase      // exclamation of excitement
+        $leet_9  = "z3r0 d4y" nocase  // "zero day"
+        $leet_10 = "hax" nocase       // shorthand "hack"
+        $leet_11 = "lulz" nocase      // variant of "lol," amuse
+        $leet_12 = "ph34r" nocase     // "fear"
+        $leet_13 = "suxx0rz" nocase   // "sucks"
+        $leet_14 = "r0xx0r" nocase    // "rocks"
+        $leet_15 = "ub3r" nocase      // "uber," meaning superior
+        $leet_16 = "sk1llz" nocase    // "skills"
+    condition:
+        any of them
+}
